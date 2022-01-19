@@ -49,6 +49,20 @@ app.get("/api/wx_openid", async (req, res) => {
   }
 });
 
+// 消息推送
+app.post("/wx/call", async (req, res) => {
+  const { headers, body } = req;
+
+  console.log('wx call', req)
+
+  if (!headers['x-wx-source']) {
+    res.send('fail');
+    return;
+  }
+
+  res.send('success');
+});
+
 const port = process.env.PORT || 80;
 
 async function bootstrap() {
